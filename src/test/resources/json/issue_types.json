@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "projectId": 1,
+    "name": "タスク",
+    "color": "#990000",
+    "displayOrder": 0
+  },
+  {
+    "id": 2,
+    "projectId": 1,
+    "name": "バグ",
+    "color": "#990000",
+    "displayOrder": 1
+  },
+  {
+    "id": 3,
+    "projectId": 1,
+    "name": "要望",
+    "color": "#990000",
+    "displayOrder": 2
+  },
+  {
+    "id": 4,
+    "projectId": 1,
+    "name": "その他",
+    "color": "#990000",
+    "displayOrder": 3
+  }
+]

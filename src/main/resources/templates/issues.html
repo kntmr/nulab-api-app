@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="jp" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_template :: head ('Backlog API App')">
+</head>
+<body>
+
+    <div class="container">
+        <div th:replace="_template :: header"></div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <a href="/">&lt;&nbsp;Projects</a>
+
+                <h3 th:text="${project.name}"></h3>
+            </div>
+
+            <div class="col-xs-12">
+                <h3>Issues</h3>
+                <p>
+                    <span class="text-danger" th:text="${message}"></span>
+                </p>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="col-xs-2">id</th>
+                            <th class="col-xs-6">summary</th>
+                            <th class="col-xs-2">issue type</th>
+                            <th class="col-xs-2">priority</th>
+                            <th class="col-xs-2">status</th>
+                            <th class="col-xs-2"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="issue : ${issues}">
+                            <td th:text="${issue.id}"></td>
+                            <td th:text="${issue.summary}"></td>
+                            <td th:text="${issue.issueType.name}"></td>
+                            <td th:text="${issue.priority.name}"></td>
+                            <td th:text="${issue.status.name}"></td>
+                            <td>
+                                <a th:href="@{/project/{projectId}/issue/{issueId}(projectId=${project.id},issueId=${issue.id})}" class="btn btn-link">detail</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <form th:action="@{/project/{projectId}/issue(projectId=${project.id})}" class="form-inline" method="POST" th:object="${issueForm}">
+                                <td></td>
+                                <td>
+                                    <div class="form-group">
+                                        <input type="text" id="summary" name="summary" class="form-control" th:field="*{summary}" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select name="issueTypeId" id="issueTypeId" class="form-control">
+                                            <option th:each="type : ${issueTypes}" th:value="${type.id}" th:text="${type.name}"></option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select name="priorityId" id="priorityId" class="form-control">
+                                            <option th:each="priority : ${priorities}" th:value="${priority.id}" th:text="${priority.name}"></option>
+                                        </select>
+                                    </div>
+                                </td>
+                                <td>
+                                    <input type="submit" class="btn btn-default" value="add issue" />
+                                </td>
+                                <td></td>
+                            </form>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

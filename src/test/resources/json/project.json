@@ -1,0 +1,10 @@
+{
+  "id": 1,
+  "projectKey": "TEST_PROJECT_1",
+  "name": "Test Project 1",
+  "chartEnabled": false,
+  "subtaskingEnabled": false,
+  "projectLeaderCanEditProjectLeader": false,
+  "textFormattingRule": "markdown",
+  "archived":false
+}

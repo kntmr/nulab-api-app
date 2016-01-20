@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="jp" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_template :: head ('Backlog API App')">
+</head>
+<body>
+
+    <div class="container">
+        <div th:replace="_template :: header"></div>
+
+        <div class="row">
+            <div class="col-xs-8">
+                <h3>Projects</h3>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="col-xs-2">id</th>
+                            <th class="col-xs-4">project key</th>
+                            <th class="col-xs-4">name</th>
+                            <th class="col-xs-2"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="project : ${projects}">
+                            <td th:text="${project.id}"></td>
+                            <td th:text="${project.projectKey}"></td>
+                            <td th:text="${project.name}"></td>
+                            <td>
+                                <a th:href="@{/project/{projectId}(projectId=${project.id})}" class="btn btn-link">show issues</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

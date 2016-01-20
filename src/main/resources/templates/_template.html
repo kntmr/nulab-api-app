@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="jp" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head (title)">
+    <meta charset="UTF-8" />
+    <script src="/webjars/jquery/2.1.4/jquery.min.js" />
+    <script src="/js/backlog.js" />
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+    <title th:text="${title}"></title>
+</head>
+<body>
+
+    <div class="container">
+        <div th:fragment="header">
+            <h2>Backlog API App</h2>
+        </div>
+    </div>
+
+</body>
+</html>

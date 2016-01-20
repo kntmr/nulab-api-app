@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="jp" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="_template :: head ('Backlog API App')">
+</head>
+<body>
+
+    <div class="container">
+        <div th:replace="_template :: header"></div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <a th:href="@{/project/{projectId}(projectId=${project.id})}">&lt;&nbsp;Issues</a>
+
+                <h3 th:text="${issue.summary}"></h3>
+                <p>
+                    <span class="text-danger" th:text="${message}"></span>
+                </p>
+            </div>
+
+            <div class="col-xs-12">
+                <form th:action="@{/project/{projectId}/issue/{issueId}(projectId=${project.id},issueId=${issue.id})}" method="POST" th:object="${issueForm}">
+                    <div class="form-group">
+                        <label for="summary">summary</label>
+                        <input type="text" id="summary" name="summary" class="form-control" th:value="${issue.summary}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="description">description</label>
+                        <textarea name="description" id="description" rows="10" class="form-control" th:text="${issue.description}" th:field="*{description}"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="issueTypeId">issue type</label>
+                        <select name="issueTypeId" id="issueTypeId" class="form-control">
+                            <option th:each="type : ${issueTypes}" th:value="${type.id}" th:text="${type.name}" th:selected="${type.id == issue.issueType.id}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="priorityId">priority</label>
+                        <select name="priorityId" id="priorityId" class="form-control">
+                            <option th:each="priority : ${priorities}" th:value="${priority.id}" th:text="${priority.name}" th:selected="${priority.id == issue.priority.id}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="statusId">status</label>
+                        <select name="statusId" id="statusId" class="form-control">
+                            <option th:each="status : ${statuses}" th:value="${status.id}" th:text="${status.name}" th:selected="${status.id == issue.status.id}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-default" value="update issue" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
